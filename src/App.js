@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Addproduct from './components/Addproduct';
 import Getproducts from './components/Getproducts';
@@ -8,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'  
 import { BrowserRouter as Router,Routes,Route,Link } from 'react-router-dom';
 import Makepayment from './components/Makepayment';
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <section className="row">
             <div className="col-md-12">
                 <nav className="navbar navbar-expand-md navbar-light bg-light">
-                    <a href="#" className="navbar-brand">Trend hub</a>
+                    <a href="#" className="navbar-brand text-danger"><b>Trend hub</b></a>
                     <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarcollapse">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -44,6 +44,8 @@ function App() {
       <Route path='/' element={<Getproducts />} />
       <Route path='/addproduct' element={<Addproduct />} />
       <Route path='/makepayment' element={<Makepayment />} />
+      <Route path='/app' element={<App />} />
+      <Route path="/cart" element={<Cart />} />
 
     </Routes>
     </div>

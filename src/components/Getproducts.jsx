@@ -9,6 +9,22 @@ function Getproduct() {
   const img_url ="http://chatutreever.alwaysdata.net/static/images/"
   const navigate = useNavigate ()
 
+  const AddToCart = (product) => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check if product already exists
+  const existing = cart.find(item => item.product_id === product.product_id);
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart 🛒");
+};
+
   // Function to get products from the database
   const getproducts = async () => {
     // update the loading message
@@ -31,6 +47,11 @@ function Getproduct() {
   },[])
   return (
     <div className='row'>
+      <button
+        className="btn btn-outline-dark"
+        onClick={() => navigate("/cart")} >
+        View Cart 🛒
+        </button>
         <h2 className='text-secondary '>Available products</h2>
         {loading}
         {error}
@@ -44,11 +65,16 @@ function Getproduct() {
                 <p>{product.product_description}</p>
                 <p>{product.product_cost}</p>
                 <button className='btn btn-dark mt-2 w-100' onClick={() => navigate('/makepayment',{state : {product}})}>Purchase Now</button>
+                <button className="btn btn-primary mt-2 w-100" onClick={() => AddToCart(product)}> Add to Cart</button>
               </div>
             </div>
           </div>
         ))}
+         <footer className="bg-dark text-center text-light p-2g ">
+        <h5>Developed by your truly Treever &copy; 2026. All rights reserved</h5>
+    </footer>
     </div>
+    
   )
 }
 

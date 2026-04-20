@@ -18,7 +18,7 @@ const Makepayment = () => {
         // Attaching user inputs to the data variable
         const data = new FormData()
         data.append("phone",phone)
-        data.append("amount",product.product_cost)
+        data.append("amount", product.product_cost)
         // connecting to the database
         try {
             const response = await axios.post("http://chatutreever.alwaysdata.net/api/mpesa_payment", data)
